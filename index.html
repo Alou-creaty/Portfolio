@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio | Alou Sanogo</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
@@ -13,41 +13,37 @@
   <body>
     <header class="header">
       <nav class="nav">
-        <a href="index.html" class="logo">Alou Sanogo</a>
+        <a href="#hero" class="logo">Alou Sanogo</a>
 
         <div class="nav-right">
-          <!-- LIENS -->
           <div class="nav-links" id="navLinks">
-            <a href="index.html">Accueil</a>
-            <a href="apropos.html">À propos</a>
-            <a href="projets.html">Projets</a>
-            <a href="contact.html">Contact</a>
+            <a href="#hero" class="active">Accueil</a>
+            <a href="#about">À propos</a>
+            <a href="#projects">Projets</a>
+            <a href="#contact">Contact</a>
           </div>
 
-          <!-- BOUTON THEME -->
           <button id="themeToggle" class="theme-btn">🌙</button>
-
-          <!-- MENU MOBILE -->
           <button class="menu-toggle" id="menuToggle">☰</button>
         </div>
       </nav>
     </header>
 
     <main>
-      <section class="hero">
+      <section id="hero" class="hero">
         <div class="hero-text">
-          <h1>Alou Sanogo</h1>
+          <h1 class="animate-text">Alou Sanogo</h1>
           <h2 class="typing">
             <span id="typing-text"></span><span class="cursor">|</span>
           </h2>
-          <p>
+          <p class="animate-text delay-1">
             Développeur full stack passionné, je conçois des applications
             modernes, performantes et centrées utilisateur.
           </p>
 
-          <div class="hero-buttons">
-            <a href="projets.html" class="btn primary">Voir mes projets</a>
-            <a href="contact.html" class="btn secondary">Me contacter</a>
+          <div class="hero-buttons animate-text delay-2">
+            <a href="#projects" class="btn primary">Voir mes projets</a>
+            <a href="#contact" class="btn secondary">Me contacter</a>
           </div>
         </div>
 
@@ -55,33 +51,232 @@
           <img src="img/bigBg.png" alt="Photo professionnelle de Alou Sanogo" />
         </div>
       </section>
+
+      <section id="about" class="about section-reveal">
+        <div class="about-intro">
+          <img src="img/bigBg.png" alt="Photo de Alou Sanogo" />
+          <div class="about-text">
+            <h2 class="animate-child">À propos de moi</h2>
+            <p class="animate-child">
+              Je m'appelle <strong>Alou Sanogo</strong>, développeur web et
+              mobile passionné par la création d’applications modernes,
+              performantes et bien structurées. J’aime transformer des idées en
+              solutions concrètes à travers le code.
+            </p>
+            <p class="animate-child">
+              Curieux, rigoureux et motivé, je cherche constamment à améliorer
+              mes compétences et à apprendre de nouvelles technologies.
+            </p>
+          </div>
+        </div>
+
+        <section class="skills">
+        <h2>Compétences techniques</h2>
+
+        <div class="orbit-container">
+          <div class="orbit-ring"></div>
+          
+          <div class="orbit-wrap" id="orbitWrap">
+            <div class="orbit-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" /><span>HTML5</span></div>
+            <div class="orbit-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" /><span>CSS3</span></div>
+            <div class="orbit-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" /><span>JavaScript</span></div>
+            <div class="orbit-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" /><span>React</span></div>
+            <div class="orbit-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" /><span>Node.js</span></div>
+            <div class="orbit-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS" /><span>Tailwind</span></div>
+            <div class="orbit-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" /><span>Git</span></div>
+            <div class="orbit-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-original.svg" alt="Firebase" /><span>Firebase</span></div>
+          </div>
+        </div>
+      </section>
+          </div>
+        </div>
+        </div>
+
+        <div class="about-details">
+          <div class="journey">
+            <h3 class="animate-child">Mon parcours</h3>
+            <p class="animate-child">
+              Je me forme activement au développement web et mobile à travers
+              des projets personnels, des exercices pratiques et une veille
+              technologique constante. Mon objectif est de devenir un
+              <strong>Développeur full stack</strong> capable de concevoir des
+              applications complètes de A à Z.
+            </p>
+          </div>
+          <div class="goal">
+            <h3 class="animate-child">Ce que je recherche</h3>
+            <p class="animate-child">
+              Je suis à la recherche d’un
+              <strong>stage / opportunité</strong> pour mettre en pratique mes
+              compétences, apprendre auprès de développeurs exprimés et
+              contribuer à des projets concrètes.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="projects section-reveal">
+        <div class="projects-header">
+          <h2 class="animate-child">Mes projets</h2>
+          <p class="animate-child">
+            Une sélection de projets que j’ai réalisés pour apprendre,
+            expérimenter et progresser.
+          </p>
+        </div>
+        <div class="project-grid">
+          <article class="project-card front">
+            <img src="img/Porte_folio.png" alt="Projet Portfolio" />
+            <div class="project-content">
+              <h3>Portfolio personnel</h3>
+              <p>Site portfolio moderne avec mode sombre et responsive.</p>
+              <span>HTML • CSS • JavaScript</span>
+              <div class="project-links">
+                <a
+                  href="https://alou-creaty.github.io/Portfolio/index.html"
+                  target="_blank"
+                  class="btn primary"
+                  >Voir</a
+                >
+                <a
+                  href="https://github.com/Alou-creaty/Portfolio"
+                  target="_blank"
+                  class="btn secondary"
+                  >GitHub</a
+                >
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card back">
+            <img src="img/site-ecomerce.png" alt="To Do App" />
+            <div class="project-content">
+              <h3>Boutique E-commerce</h3>
+              <p>
+                Plateforme e-commerce dynamique avec gestion complète du
+                catalogue et base de données en temps réel.
+              </p>
+              <p>
+                Interface d'administration dédiée pour l'ajout, la modification
+                et la suppression de produits en direct.
+              </p>
+              <span>React • Vite • Firebase • Tailwind CSS</span>
+              <div class="project-links">
+                <a
+                  href="https://boutique-jorma.vercel.app/"
+                  target="_blank"
+                  class="btn primary"
+                  >Voir</a
+                >
+                <a
+                  href="https://github.com/Alou-creaty/boutique-en-ligne"
+                  target="_blank"
+                  class="btn secondary"
+                  >GitHub</a
+                >
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card mobile">
+            <img src="img/project3.jpg" alt="App mobile" />
+            <div class="project-content">
+              <h3>App mobile (prototype)</h3>
+              <p>Application mobile simple pour l’apprentissage.</p>
+              <span>React Native (bases)</span>
+              <div class="project-links">
+                <a href="#" class="btn primary">Voir</a>
+                <a href="#" class="btn secondary">GitHub</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="contact" class="contact section-reveal">
+        <div class="contact-header">
+          <h2 class="animate-child">Contactez-moi par mail</h2>
+        </div>
+
+        <div class="contact-container">
+          <div class="contact-form">
+            <h3 class="animate-child">Envoyez-moi un message</h3>
+            <form id="contactForm">
+              <label for="name">Nom</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Votre nom"
+                required
+              />
+
+              <label for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Votre email"
+                required
+              />
+
+              <label for="message">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                placeholder="Votre message..."
+                required
+              ></textarea>
+
+              <button type="submit" class="btn primary">Envoyer</button>
+            </form>
+          </div>
+        </div>
+      </section>
     </main>
-    <div class="hero-socials">
-      <a
-        href="https://www.linkedin.com/in/alou-sanogo-5ba80738a"
-        target="_blank"
-        aria-label="LinkedIn"
-      >
-        <img src="img/linkedin.svg.svg" alt="LinkedIn" />
-      </a>
-      <a
-        href="https://www.facebook.com/share/1DW4EK4x4h/?mibextid=wwXIfr"
-        target="_blank"
-        aria-label="Facebook"
-      >
-        <img src="img/facebook.svg.svg" alt="Facebook" />
-      </a>
-      <a href="https://wa.me/22389569104" target="_blank" aria-label="WhatsApp">
-        <img src="img/whatsapp.svg.svg" alt="WhatsApp" />
-      </a>
-      <a
-        href="https://github.com/tonprofil"
-        target="_blank"
-        aria-label="GitHub"
-      >
-        <img src="img/github.png" alt="GitHub" />
-      </a>
+    <div id="lightbox" class="lightbox">
+      <span class="lightbox-close">&times;</span>
+      <img class="lightbox-content" id="lightboxImg" src="" alt="Zoom projet" />
+      <div id="lightboxCaption" class="lightbox-caption"></div>
     </div>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <p>&copy; 2026 Alou Sanogo. Tous droits réservés.</p>
+
+        <div class="footer-socials">
+          <a
+            href="https://www.linkedin.com/in/alou-sanogo-5ba80738a"
+            target="_blank"
+            aria-label="LinkedIn"
+          >
+            <img src="img/linkedin.svg.svg" alt="LinkedIn" />
+          </a>
+          <a
+            href="https://www.facebook.com/share/1DW4EK4x4h/?mibextid=wwXIfr"
+            target="_blank"
+            aria-label="Facebook"
+          >
+            <img src="img/facebook.svg.svg" alt="Facebook" />
+          </a>
+          <a
+            href="https://wa.me/22389569104"
+            target="_blank"
+            aria-label="WhatsApp"
+          >
+            <img src="img/whatsapp.svg.svg" alt="WhatsApp" />
+          </a>
+          <a
+            href="https://github.com/alou-creaty"
+            target="_blank"
+            aria-label="GitHub"
+          >
+            <img src="img/github.png" alt="GitHub" />
+          </a>
+        </div>
+      </div>
+    </footer>
+
     <script src="theme.js"></script>
   </body>
 </html>

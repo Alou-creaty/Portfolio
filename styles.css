@@ -1,12 +1,16 @@
-/* VARIABLES */
+/* ==========================================================================
+   1. VARIABLES & THÈMES
+   ========================================================================== */
 
-/* MODE CLAIR (par défaut) */
+/* MODE CLAIR (Par défaut) */
 :root {
   --bg: #f8fafc;
   --text: #0f172a;
   --primary: #2563eb;
   --card: #ffffff;
   --gray: #64748b;
+  --nav-bg: rgba(255, 255, 255, 0.95);
+  --shadow: rgba(0, 0, 0, 0.05);
 }
 
 /* MODE SOMBRE */
@@ -16,35 +20,81 @@ body.dark {
   --primary: #60a5fa;
   --card: #1e293b;
   --gray: #94a3b8;
-}
-.theme-btn {
-  background: none;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-  margin-left: 20px;
-  transition: transform 0.2s;
+  --nav-bg: rgba(30, 41, 59, 0.95);
+  --shadow: rgba(0, 0, 0, 0.2);
 }
 
-.theme-btn:hover {
-  transform: scale(1.2);
-}
-
-/* RESET */
+/* ==========================================================================
+   2. RESET & STYLES GLOBAUX
+   ========================================================================== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Segoe UI", sans-serif;
+  font-family: "Poppins", "Segoe UI", sans-serif;
 }
 
-/* HEADER */
+html {
+  scroll-behavior: smooth; /* Défilement fluide indispensable pour une SPA */
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  transition:
+    background 0.3s,
+    color 0.3s;
+  overflow-x: hidden;
+}
+
+/* Ajustement pour que l'en-tête fixe ne cache pas le titre des sections */
+section {
+  scroll-margin-top: 80px;
+}
+
+/* Boutons Génériques */
+.btn {
+  padding: 12px 24px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+  display: inline-block;
+}
+
+.primary {
+  background: var(--primary);
+  color: white;
+}
+
+.primary:hover {
+  background: #1e40af;
+  transform: translateY(-2px);
+}
+
+.secondary {
+  border: 2px solid var(--primary);
+  color: var(--primary);
+  background: transparent;
+}
+
+.secondary:hover {
+  background: var(--primary);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   3. HEADER & NAVIGATION
+   ========================================================================== */
 .header {
   position: sticky;
   top: 0;
-  background: white;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  background: var(--nav-bg);
+  backdrop-filter: blur(5px);
+  box-shadow: 0 2px 10px var(--shadow);
   z-index: 100;
+  transition: background 0.3s;
 }
 
 .nav {
@@ -59,30 +109,66 @@ body.dark {
 .logo {
   font-size: 20px;
   font-weight: 700;
-  color: var(--dark);
+  color: var(--text);
   text-decoration: none;
 }
 
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-left: auto;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
 .nav-links a {
-  margin-left: 25px;
   text-decoration: none;
   color: var(--gray);
   font-weight: 500;
   transition: color 0.3s;
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links a.active {
   color: var(--primary);
 }
 
-/* HERO */
+.theme-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.theme-btn:hover {
+  transform: scale(1.2);
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   4. SECTION ACCUEIL (HERO)
+   ========================================================================== */
 .hero {
   max-width: 1100px;
   margin: auto;
-  padding: 80px 30px;
+  padding: 100px 30px;
   display: flex;
   align-items: center;
   gap: 50px;
+  min-height: calc(100vh - 70px);
 }
 
 .hero-text {
@@ -91,13 +177,31 @@ body.dark {
 
 .hero-text h1 {
   font-size: 48px;
-  color: var(--dark);
+  color: var(--text);
 }
 
-.hero-text h2 {
+.typing {
   font-size: 24px;
   margin: 15px 0;
   color: var(--primary);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.cursor {
+  display: inline-block;
+  margin-left: 5px;
+  animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
 .hero-text p {
@@ -106,40 +210,34 @@ body.dark {
   margin-bottom: 30px;
 }
 
-/* BUTTONS */
 .hero-buttons {
   display: flex;
   gap: 15px;
+  margin-bottom: 30px;
 }
 
-.btn {
-  padding: 12px 24px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: 0.3s;
+.hero-socials {
+  display: flex;
+  gap: 20px;
 }
 
-.primary {
-  background: var(--primary);
-  color: white;
+.hero-socials a img {
+  width: 35px;
+  height: 35px;
+  transition:
+    transform 0.3s,
+    filter 0.3s;
 }
 
-.primary:hover {
-  background: #1e40af;
+.hero-socials a:hover img {
+  transform: scale(1.2);
+  filter: brightness(1.2);
 }
 
-.secondary {
-  border: 2px solid var(--primary);
-  color: var(--primary);
+body.dark .hero-socials a img {
+  filter: brightness(0.9);
 }
 
-.secondary:hover {
-  background: var(--primary);
-  color: white;
-}
-
-/* IMAGE */
 .hero-img {
   flex: 1;
   text-align: center;
@@ -147,98 +245,63 @@ body.dark {
 
 .hero-img img {
   width: 100%;
-  max-width: 700px;
-  animation: float 2.5s ease-in-out infinite;
-}
-body {
-  background: var(--bg);
-  color: var(--text);
-  transition:
-    background 0.3s,
-    color 0.3s;
+  max-width: 450px;
+  animation: float 3s ease-in-out infinite;
 }
 
-.header {
-  background: var(--card);
-}
-
-.logo {
-  color: var(--text);
-}
-
-.nav-links a {
-  color: var(--gray);
-}
-
-.nav-links a:hover {
-  color: var(--primary);
-}
-
-/* ANIMATION */
 @keyframes float {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
+  0%,
   100% {
     transform: translateY(0);
   }
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .hero {
-    flex-direction: column-reverse;
-    text-align: center;
-  }
-
-  .hero-text h1 {
-    font-size: 36px;
-  }
-
-  .hero-buttons {
-    justify-content: center;
-    flex-wrap: wrap;
+  50% {
+    transform: translateY(-15px);
   }
 }
-/* PAGE A PROPOS */
+
+/* ==========================================================================
+   5. SECTION À PROPOS & COMPÉTENCES
+   ========================================================================== */
 .about {
   max-width: 1100px;
   margin: auto;
-  padding: 60px 30px;
+  padding: 80px 30px;
 }
 
 .about-intro {
   display: flex;
-  gap: 40px;
+  gap: 50px;
   align-items: center;
-  margin-bottom: 80px;
+  margin-bottom: 60px;
 }
 
 .about-intro img {
-  width: 280px;
+  width: 250px;
   border-radius: 20px;
+  box-shadow: 0 10px 20px var(--shadow);
 }
 
-.about-text h1 {
-  font-size: 36px;
+.about-text h2,
+.skills h3,
+.journey h3,
+.goal h3,
+.projects-header h2,
+.contact-header h2 {
+  font-size: 32px;
   margin-bottom: 20px;
+  position: relative;
 }
 
-.about-text p {
+.about-text p,
+.journey p,
+.goal p {
   color: var(--gray);
   line-height: 1.7;
   margin-bottom: 15px;
 }
 
-/* SKILLS */
-.skills h2,
-.journey h2,
-.goal h2 {
-  font-size: 28px;
-  margin-bottom: 30px;
+.skills {
+  margin-bottom: 60px;
 }
 
 .skills-grid {
@@ -253,120 +316,50 @@ body {
   text-align: center;
   border-radius: 15px;
   font-weight: 600;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s;
+  box-shadow: 0 5px 20px var(--shadow);
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
 }
 
 .skill-card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 8px 25px var(--shadow);
 }
 
-/* SECTIONS */
+.about-details {
+  display: flex;
+  gap: 40px;
+}
+
 .journey,
 .goal {
-  margin-top: 80px;
+  flex: 1;
 }
 
-.goal p {
-  margin-bottom: 30px;
-}
-
-/* ACTIVE LINK */
-.nav-links .active {
-  color: var(--primary);
-}
-
-/* NAV RIGHT */
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-/* BOUTON MENU */
-.menu-toggle {
-  display: none;
-  font-size: 24px;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: block;
-  }
-
-  .nav {
-    max-width: 1100px;
-    margin: auto;
-    padding: 15px 30px;
-    display: flex;
-    align-items: center;
-  }
-  .nav-links {
-    position: absolute;
-    top: 70px;
-    right: 20px;
-    background: var(--card);
-    flex-direction: column;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-
-    display: none;
-  }
-
-  .nav-links a {
-    margin: 10px 0;
-  }
-
-  .nav-links.active {
-    display: flex;
-  }
-}
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin-left: auto; /* C’EST ÇA QUI CORRIGE */
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .about-intro {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-/* PAGE PROJETS */
+/* ==========================================================================
+   6. SECTION PROJETS
+   ========================================================================== */
 .projects {
-  max-width: 1200px;
+  max-width: 1100px;
   margin: auto;
-  padding: 60px 30px;
+  padding: 80px 30px;
 }
 
 .projects-header {
   text-align: center;
-  margin-bottom: 50px;
-}
-
-.projects-header h1 {
-  font-size: 42px;
+  margin-bottom: 40px;
 }
 
 .projects-header p {
   color: var(--gray);
-  margin-top: 10px;
 }
 
-/* FILTRES */
 .project-filters {
   display: flex;
   justify-content: center;
   gap: 15px;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 }
 
 .filter-btn {
@@ -374,9 +367,11 @@ body {
   border-radius: 30px;
   border: none;
   background: var(--card);
+  color: var(--text);
   cursor: pointer;
   font-weight: 600;
   transition: 0.3s;
+  box-shadow: 0 2px 10px var(--shadow);
 }
 
 .filter-btn.active,
@@ -385,22 +380,21 @@ body {
   color: white;
 }
 
-/* GRID */
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 30px;
 }
 
-/* CARD */
 .project-card {
   background: var(--card);
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 30px var(--shadow);
   transition:
     transform 0.3s,
-    opacity 0.3s;
+    opacity 0.3s,
+    display 0.3s;
 }
 
 .project-card:hover {
@@ -409,7 +403,7 @@ body {
 
 .project-card img {
   width: 100%;
-  height: 180px;
+  height: 200px;
   object-fit: cover;
 }
 
@@ -424,106 +418,64 @@ body {
 .project-content p {
   color: var(--gray);
   font-size: 14px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  line-height: 1.5;
 }
 
 .project-content span {
   font-size: 13px;
   font-weight: 600;
   color: var(--primary);
+  display: block;
+  margin-bottom: 15px;
 }
 
 .project-links {
   display: flex;
   gap: 10px;
-  margin-top: 15px;
 }
 
-/* HIDDEN */
+/* Classe utilitaire pour le filtrage en JS */
 .project-card.hide {
-  opacity: 0;
-  transform: scale(0.9);
-  pointer-events: none;
-}
-.hero-socials {
-  margin-top: 25px;
-  display: flex;
-  gap: 20px;
-  justify-content: center; /* ou left selon ton style */
+  display: none;
 }
 
-.hero-socials a img {
-  width: 40px;
-  height: 40px;
-  transition:
-    transform 0.3s,
-    filter 0.3s;
-}
-
-/* Hover effect */
-.hero-socials a:hover img {
-  transform: scale(1.2);
-  filter: brightness(1.2);
-}
-
-/* Mode sombre */
-body.dark .hero-socials a img {
-  filter: brightness(0.9);
-}
-/* PAGE CONTACT */
+/* ==========================================================================
+   7. SECTION CONTACT
+   ========================================================================== */
 .contact {
   max-width: 1100px;
   margin: auto;
-  padding: 60px 30px;
+  padding: 80px 30px 120px 30px;
 }
 
 .contact-header {
   text-align: center;
-  margin-bottom: 50px;
-}
-
-.contact-header h1 {
-  font-size: 42px;
+  margin-bottom: 40px;
 }
 
 .contact-header p {
   color: var(--gray);
-  margin-top: 10px;
 }
 
-/* CONTACT CONTAINER */
 .contact-container {
   display: flex;
-  gap: 50px;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  gap: 40px;
 }
 
-/* FORMULAIRE */
 .contact-form,
 .contact-whatsapp {
   flex: 1;
-  min-width: 300px;
   background: var(--card);
   padding: 30px;
   border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s;
-}
-
-.contact-form:hover,
-.contact-whatsapp:hover {
-  transform: translateY(-5px);
-}
-
-.contact-form h2,
-.contact-whatsapp h2 {
-  margin-bottom: 20px;
+  box-shadow: 0 10px 30px var(--shadow);
 }
 
 .contact-form label {
   display: block;
   margin: 10px 0 5px;
+  font-weight: 600;
 }
 
 .contact-form input,
@@ -531,10 +483,12 @@ body.dark .hero-socials a img {
   width: 100%;
   padding: 12px 15px;
   border-radius: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--gray);
+  background: var(--bg);
+  color: var(--text);
   outline: none;
   margin-bottom: 15px;
-  transition: border 0.3s;
+  transition: border-color 0.3s;
 }
 
 .contact-form input:focus,
@@ -542,53 +496,103 @@ body.dark .hero-socials a img {
   border-color: var(--primary);
 }
 
-/* WHATSAPP */
 .contact-whatsapp p {
   margin-bottom: 20px;
 }
 
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .contact-container {
-    flex-direction: column;
-  }
-}
-.typing {
-  font-size: 24px;
-  margin: 15px 0;
-  color: var(--primary);
-  font-weight: 600;
+/* ==========================================================================
+   8. PRÉPARATION DES ANIMATIONS AVANCÉES
+   ========================================================================== */
+
+/* 1. Révélation de base de la section (Glissement vers le haut + fondu) */
+.section-reveal {
+  opacity: 0;
+  transform: translateY(60px);
+  transition:
+    opacity 1s cubic-bezier(0.25, 1, 0.5, 1),
+    transform 1s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* curseur */
-.cursor {
-  display: inline-block;
-  margin-left: 5px;
-  animation: blink 0.8s infinite;
+/* 2. Effet d'apparition en cascade pour les cartes (Compétences & Projets) */
+.section-reveal .skill-card,
+.section-reveal .project-card {
+  opacity: 0;
+  transform: translateY(30px) scale(0.95);
+  transition:
+    opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1),
+    transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-@keyframes blink {
-  0% {
+/* 3. Effet d'apparition pour les images de présentation */
+.section-reveal .about-intro img {
+  opacity: 0;
+  transform: scale(0.8) rotate(-3deg);
+  transition:
+    opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1),
+    transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* --- ÉTATS QUAND LA SECTION EST VISIBLE --- */
+
+.section-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Quand la section devient visible, on déclenche l'affichage des enfants */
+.section-reveal.visible .skill-card,
+.section-reveal.visible .project-card {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.section-reveal.visible .about-intro img {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+/* Micro-interaction au survol des cartes : Effet lévitation */
+.skill-card:hover,
+.project-card:hover {
+  transform: translateY(-12px) scale(1.03) !important;
+  box-shadow: 0 20px 35px var(--shadow);
+  border-color: var(--primary);
+}
+/* --- ANIMATIONS DU TEXTE DU HERO (AU CHARGEMENT) --- */
+.animate-text {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+.delay-1 {
+  animation-delay: 0.2s;
+}
+.delay-2 {
+  animation-delay: 0.4s;
+}
+
+@keyframes fadeUp {
+  to {
     opacity: 1;
+    transform: translateY(0);
   }
-  50% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-.typing {
-  font-family: "Poppins", sans-serif;
-  letter-spacing: 0.5px;
-}
-/* menu caché par défaut */
-.nav-links {
-  display: flex;
-  gap: 20px;
 }
 
-/* mobile */
+/* --- ANIMATION DES TEXTES DE SECTIONS (AU SCROLL) --- */
+.section-reveal .animate-child {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+.section-reveal.visible .animate-child {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* ==========================================================================
+   9. MEDIA QUERIES (RESPONSIVE)
+   ========================================================================== */
 @media (max-width: 768px) {
   .nav-links {
     position: absolute;
@@ -598,7 +602,9 @@ body.dark .hero-socials a img {
     background: var(--card);
     padding: 20px;
     border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     display: none;
+    width: 200px;
   }
 
   .nav-links.active {
@@ -607,9 +613,407 @@ body.dark .hero-socials a img {
 
   .menu-toggle {
     display: block;
-    font-size: 24px;
-    background: none;
-    border: none;
-    cursor: pointer;
+  }
+
+  .hero {
+    flex-direction: column-reverse;
+    text-align: center;
+    padding-top: 40px;
+    gap: 30px;
+  }
+
+  .hero-text h1 {
+    font-size: 36px;
+  }
+
+  .hero-buttons,
+  .hero-socials {
+    justify-content: center;
+  }
+
+  .about-intro,
+  .about-details,
+  .contact-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-intro img {
+    width: 200px;
+  }
+}
+/* ==========================================================================
+   10. STYLE DU FOOTER
+   ========================================================================== */
+.footer {
+  background: var(--card);
+  padding: 30px 20px;
+  margin-top: 50px;
+  border-top: 1px solid var(--shadow);
+  transition:
+    background 0.3s,
+    border-color 0.3s;
+}
+
+.footer-content {
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-content p {
+  color: var(--gray);
+  font-size: 14px;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 15px;
+}
+
+.footer-socials a img {
+  width: 30px;
+  height: 30px;
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
+}
+
+/* Effet de survol sur les icônes */
+.footer-socials a:hover img {
+  transform: translateY(-5px) scale(1.1);
+  filter: brightness(1.2);
+}
+
+/* Gestion du responsive pour les petits écrans */
+@media (max-width: 600px) {
+  .footer-content {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+}
+.contact-form label {
+  text-align: left;
+  display: block;
+}
+/* ==========================================================================
+   11. STYLE DE LA FENÊTRE LIGHTBOX
+   ========================================================================== */
+.lightbox {
+  display: none; /* Cachée par défaut */
+  position: fixed;
+  z-index: 200; /* Au-dessus du header fixe (100) */
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.9); /* Fond noir semi-transparent */
+  backdrop-filter: blur(8px); /* Floute l'arrière-plan pour un effet premium */
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* Devient visible en JS */
+.lightbox.show {
+  display: block;
+  opacity: 1;
+}
+
+/* L'image zoomée */
+.lightbox-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 800px;
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transform: scale(0.9);
+  transition: transform 0.4s ease;
+}
+
+.lightbox.show .lightbox-content {
+  transform: scale(1); /* Effet d'agrandissement doux à l'ouverture */
+}
+
+/* Bouton Fermer (La croix) */
+.lightbox-close {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  color: #fff;
+  font-size: 60px;
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.lightbox-close:hover {
+  color: var(--primary);
+  transform: scale(1.1);
+}
+
+/* Légende sous l'image (Titre du projet) */
+.lightbox-caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 800px;
+  text-align: center;
+  color: #ccc;
+  padding: 20px 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Curseur sur les images de projets pour faire comprendre qu'elles sont cliquables */
+.project-card img {
+  cursor: pointer;
+  transition:
+    filter 0.3s ease,
+    transform 0.3s ease;
+}
+
+.project-card img:hover {
+  filter: brightness(0.85);
+}
+/* ==========================================================================
+   12. CAROUSEL DE LOGOS INFINI (DROITE À GAUCHE)
+   ========================================================================== */
+.tech-slider-container {
+  width: 100%;
+  margin: 40px auto;
+  overflow: hidden;
+}
+
+.tech-slider-container h3 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.tech-slider {
+  position: relative;
+  width: 100%;
+  background: var(--card);
+  padding: 20px 0;
+  border-radius: 15px;
+  box-shadow:
+    inset 10px 0 20px var(--shadow),
+    inset -10px 0 20px var(--shadow);
+  overflow: hidden;
+  display: flex;
+}
+
+/* Le conteneur qui contient les deux listes alignées */
+.tech-track {
+  display: flex;
+  width: max-content; /* S'adapte à la taille globale de tous les logos */
+  gap: 40px;
+  animation: scrollInfinite 25s linear infinite; /* Animation continue et fluide */
+}
+
+/* Mettre l'animation en pause lorsque la souris survole le bandeau */
+.tech-slider:hover .tech-track {
+  animation-play-state: paused;
+}
+
+/* Style de chaque bloc logo + texte */
+.tech-slide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  gap: 10px;
+  transition: transform 0.3s ease;
+}
+
+.tech-slide img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  filter: grayscale(20%);
+  transition:
+    filter 0.3s ease,
+    transform 0.3s ease;
+}
+
+/* Effet au survol d'un logo précis */
+.tech-slide:hover img {
+  filter: grayscale(0%);
+  transform: scale(1.15);
+}
+
+.tech-slide span {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray);
+}
+.tech-slide img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain; /* Force l'image à garder ses proportions dans un carré de 50px */
+  filter: grayscale(20%);
+  transition:
+    filter 0.3s ease,
+    transform 0.3s ease;
+}
+/* KEYFRAMES : Fait glisser la piste exactement de la moitié de sa largeur */
+@keyframes scrollInfinite {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+/* ==========================================================================
+   13. SYSTÈME D'ORBITE 3D POUR LES COMPÉTENCES (CORRIGÉ RESPONSIVE)
+   ========================================================================== */
+:root {
+  /* On définit des variables pour pouvoir les modifier facilement en JS et CSS */
+  --orbit-w: 700px;
+  --orbit-h: 220px;
+}
+
+.orbit-container {
+  position: relative;
+  width: 100%;
+  height: 450px;
+  margin: 40px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  perspective: 1000px;
+}
+
+/* L'anneau elliptique en arrière-plan */
+.orbit-ring {
+  position: absolute;
+  width: var(--orbit-w);
+  height: var(--orbit-h);
+  border: 2px dashed rgba(100, 116, 139, 0.4);
+  border-radius: 50%;
+  transform: rotateX(
+    75deg
+  ); /* Légèrement plus incliné pour un meilleur effet */
+  pointer-events: none;
+  z-index: 1;
+  transition:
+    width 0.3s,
+    height 0.3s;
+}
+
+/* Le conteneur rotatif qui englobe les cartes */
+.orbit-wrap {
+  position: relative;
+  width: var(--orbit-w);
+  height: var(--orbit-h);
+  transform-style: preserve-3d;
+  animation: rotateOrbit 25s linear infinite; /* Un poil plus lent pour la lisibilité */
+  transition:
+    width 0.3s,
+    height 0.3s;
+}
+
+.orbit-container:hover .orbit-wrap {
+  animation-play-state: paused;
+}
+
+/* Style individuel de chaque icône en orbite */
+.orbit-card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 90px;
+  height: 90px;
+  margin-left: -45px;
+  margin-top: -45px;
+  background: var(--card);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  padding: 10px;
+  transition:
+    transform 0.1s linear,
+    box-shadow 0.3s; /* Transition fluide pour le JS */
+  cursor: pointer;
+  z-index: 2;
+}
+
+.orbit-card img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.orbit-card span {
+  font-size: 11px;
+  font-weight: 600;
+  margin-top: 5px;
+  color: var(--text);
+  text-align: center;
+}
+
+.orbit-card * {
+  transform-style: flat;
+}
+
+.orbit-card:hover {
+  box-shadow: 0 15px 30px var(--primary);
+}
+
+@keyframes rotateOrbit {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+/* ==========================================
+   AJUSTEMENTS POUR MOBILE & TABLETTE
+   ========================================== */
+@media (max-width: 768px) {
+  :root {
+    /* On réduit la taille de l'ellipse pour qu'elle tienne dans un écran de smartphone */
+    --orbit-w: 320px;
+    --orbit-h: 140px;
+  }
+
+  .orbit-container {
+    height: 380px; /* On réduit un peu la hauteur globale de la zone */
+  }
+
+  .orbit-card {
+    /* On rend les bulles de logos un peu plus petites sur mobile */
+    width: 75px;
+    height: 75px;
+    margin-left: -37.5px;
+    margin-top: -37.5px;
+    padding: 8px;
+  }
+
+  .orbit-card img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .orbit-card span {
+    font-size: 9px;
+    margin-top: 2px;
   }
 }
