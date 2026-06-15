@@ -1017,3 +1017,92 @@ body.dark .hero-socials a img {
     margin-top: 2px;
   }
 }
+/* ==========================================================================
+   14. ANIMATION DE PILE DE CARTES AU DÉFILEMENT (STACKING CARDS)
+   ========================================================================== */
+.project-stack-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px; /* Espace entre les cartes avant qu'elles ne s'empilent */
+  max-width: 900px; /* On resserre un peu pour un effet visuel plus élégant */
+  margin: 0 auto;
+  padding-bottom: 100px; /* Espace en bas de page pour finir le scroll */
+}
+
+/* Chaque carte devient un élément "collant" */
+.project-card-stack {
+  position: sticky;
+  top: 120px; /* Distance par rapport au haut de l'écran lors du blocage */
+  padding-top: 20px;
+}
+
+/* Le contenu réel de la carte (Design & Ombre) */
+.project-card-inner {
+  background: var(--card);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  display: flex; /* Aligne l'image à gauche et le texte à droite sur PC */
+  align-items: center;
+  gap: 30px;
+  padding: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.project-card-inner img {
+  width: 45%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.project-card-inner .project-content {
+  flex: 1;
+  padding: 0;
+}
+
+.project-card-inner h3 {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.project-card-inner p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* --- EFFET DE PROFONDEUR DE LA PILE --- */
+/* Pour donner l'illusion que les cartes du dessous s'enfoncent légèrement */
+.project-card-stack:nth-child(1) {
+  transform: scale(1);
+}
+.project-card-stack:nth-child(2) {
+  transform: scale(0.98);
+}
+.project-card-stack:nth-child(3) {
+  transform: scale(0.96);
+}
+
+/* RESPONSIVE : Sur mobile, on repasse en affichage vertical standard */
+@media (max-width: 768px) {
+  .project-card-inner {
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .project-card-inner img {
+    width: 100%;
+    height: 180px;
+  }
+
+  .project-stack-container {
+    gap: 30px;
+  }
+
+  .project-card-stack {
+    top: 90px; /* Ajustement pour le header mobile */
+  }
+}
