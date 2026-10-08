@@ -175,49 +175,71 @@ document.querySelectorAll(".section-reveal").forEach((section) => {
   });
 });
 /* ==========================================================================
-   6. SYSTÈME LIGHTBOX (ZOOM DES IMAGES DE PROJETS)
+   6. SYSTÈME LIGHTBOX — IMAGES DES PROJETS
    ========================================================================== */
+
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightboxImg");
 const lightboxCaption = document.getElementById("lightboxCaption");
 const closeBtn = document.querySelector(".lightbox-close");
 
-// Sélectionner toutes les images situées dans tes cartes de projets
-const projectImages = document.querySelectorAll(".project-card img");
+const projectImages = document.querySelectorAll(
+  ".project-card-stack .project-media img",
+);
+
+/* OUVRIR LE LIGHTBOX */
 
 projectImages.forEach((img) => {
   img.addEventListener("click", () => {
-    // 1. Récupérer le titre du projet correspondant à l'image cliquée
-    const projectTitle =
-      img.parentElement.querySelector("h3")?.textContent || "";
+    if (!lightbox || !lightboxImg) return;
 
-    // 2. Injecter la source de l'image et la légende dans la lightbox
+    const card = img.closest(".project-card-inner");
+
+    const projectTitle = card?.querySelector("h3")?.textContent.trim() || "";
+
     lightboxImg.src = img.src;
-    lightboxCaption.textContent = projectTitle;
 
-    // 3. Afficher la lightbox avec l'animation
+    if (lightboxCaption) {
+      lightboxCaption.textContent = projectTitle;
+    }
+
     lightbox.classList.add("show");
-    document.body.style.overflow = "hidden"; // Bloque le scroll de la page en arrière-plan
+
+    document.body.style.overflow = "hidden";
   });
 });
 
-// Fermer la lightbox en cliquant sur la croix
-if (closeBtn) {
+/* FERMER AVEC LA CROIX */
+
+if (closeBtn && lightbox) {
   closeBtn.addEventListener("click", () => {
     lightbox.classList.remove("show");
-    document.body.style.overflow = "auto"; // Réactive le scroll de la page
+
+    document.body.style.overflow = "";
   });
 }
 
-// Fermer la lightbox automatiquement si l'utilisateur clique en dehors de l'image
+/* FERMER EN CLIQUANT À L'EXTÉRIEUR */
+
 if (lightbox) {
-  lightbox.addEventListener("click", (e) => {
-    if (e.target === lightbox) {
+  lightbox.addEventListener("click", (event) => {
+    if (event.target === lightbox) {
       lightbox.classList.remove("show");
-      document.body.style.overflow = "auto";
+
+      document.body.style.overflow = "";
     }
   });
 }
+
+/* FERMER AVEC LA TOUCHE ESC */
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && lightbox?.classList.contains("show")) {
+    lightbox.classList.remove("show");
+
+    document.body.style.overflow = "";
+  }
+});
 /* ==========================================================================
    7. CALCUL DU POSITIONNEMENT EN ORBITE 3D (CORRIGÉ RESPONSIVE)
    ========================================================================== */

@@ -115,72 +115,165 @@
         </div>
       </section>
 
-      <section id="projects" class="projects section-reveal">
-        <div class="projects-header">
-          <h2 class="animate-child">Mes projets</h2>
-          <p class="animate-child">
-            Une sélection de projets que j’ai réalisés pour apprendre,
-            expérimenter et progresser.
-          </p>
-        </div>
-       <section class="project-stack-container">
-        <article class="project-card-stack front">
-          <div class="project-card-inner">
-            <img src="img/Porte_folio.png" alt="Projet Portfolio" />
-            <div class="project-content">
-              <h3>Portfolio personnel</h3>
-              <p>Site portfolio moderne avec mode sombre et responsive.</p>
-              <span>HTML • CSS • JavaScript</span>
-              <div class="project-links">
-                <a href="https://Alou-creaty.github.io/Portfolio/"  target="_blank" class="btn primary">Voir</a>
-                <a href="https://github.com/Alou-creaty/Portfolio" target="_blank" class="btn secondary">GitHub</a>
-              </div>
-            </div>
-          </div>
-        </article>
+     <section id="projects" class="projects section-reveal">
+  <div class="projects-header">
+    <h2 class="animate-child">Mes projets</h2>
+    <p class="animate-child">
+      Une sélection de projets que j’ai réalisés pour apprendre,
+      expérimenter et progresser.
+    </p>
+  </div>
 
-        <article class="project-card-stack back">
-          <div class="project-card-inner">
-            <img src="img/To Do.png" alt="To Do App" />
-            <div class="project-content">
-              <h3>To-Do List</h3>
-              <p>Application de gestion de tâches avec stockage local.</p>
-              <span>JavaScript • Firebase • React • Tailwind CSS • Firebase Auth</span>
-              <div class="project-links">
-                <a href="https://carnet-todo-925e8.web.app" class="btn primary">Voir</a>
-                <a href="https://github.com/Alou-creaty/To-Do_List" class="btn secondary">GitHub</a>
-              </div>
-            </div>
+  <section class="project-stack-container">
+
+    <!-- PROJET 1 : PORTFOLIO -->
+    <article class="project-card-stack front">
+      <div class="project-card-inner">
+
+        <div class="project-media">
+          <img
+            src="img/Porte_folio.png"
+            alt="Projet Portfolio"
+            class="project-image"
+          >
+        </div>
+
+        <div class="project-content">
+          <h3>Portfolio personnel</h3>
+
+          <p>
+            Site portfolio moderne avec mode sombre,
+            animations et design responsive.
+          </p>
+
+          <span>HTML • CSS • JavaScript</span>
+
+          <div class="project-links">
+            <a
+              href="https://Alou-creaty.github.io/Portfolio/"
+              target="_blank"
+              class="btn primary"
+            >
+              Voir
+            </a>
+
+            <a
+              href="https://github.com/Alou-creaty/Portfolio"
+              target="_blank"
+              class="btn secondary"
+            >
+              GitHub
+            </a>
           </div>
-        </article>
-        <article class="project-card-stack back"> 
-          <div class="project-card-inner">
-            <img src="img/site-ecomerce.png" alt="E-Commerce Site" />
-            <div class="project-content">
-              <h3>Site E-Commerce</h3>
-              <p>Plateforme e-commerce dynamique avec gestion complète du catalogue et base de données en temps réel.</p>
-              <p>Interface d'administration dédiée pour l'ajout, la modification et la suppression de produits en direct.</p>
-              <span>React • Vite • Firebase • Tailwind CSS</span>
-              <div class="project-links">
-                <a href="https://boutique-jorma.vercel.app/" class="btn primary" target="_blank">Voir</a>
-                <a href="https://github.com/Alou-creaty/boutique-en-ligne" class="btn secondary">GitHub</a>
-              </div>
-            </div>
+        </div>
+
+      </div>
+    </article>
+
+
+    <!-- PROJET 2 : CARNET -->
+    <article class="project-card-stack back">
+      <div class="project-card-inner">
+
+        <div class="project-media">
+          <video
+  class="project-video"
+  controls
+  poster="img/To Do.png"
+>
+  <source src="vidéos/Carnet_vidéo.mp4" type="video/mp4">
+  Votre navigateur ne supporte pas la vidéo.
+</video>
+        </div>
+
+        <div class="project-content">
+          <h3>To-Do List</h3>
+
+          <p>
+            Application de gestion de tâches avec stockage
+            et authentification utilisateur.
+          </p>
+
+          <span>
+            JavaScript • Firebase • React • Tailwind CSS • Firebase Auth
+          </span>
+
+          <div class="project-links">
+            <a
+              href="https://carnet-todo-925e8.web.app"
+              target="_blank"
+              class="btn primary"
+            >
+              Voir
+            </a>
+
+            <a
+              href="https://github.com/Alou-creaty/To-Do_List"
+              target="_blank"
+              class="btn secondary"
+            >
+              GitHub
+            </a>
           </div>
-        </article>
-        <!-- <article class="project-card mobile"> 
-            <img src="img/project3.jpg" alt="App mobile" />
-            <div class="project-content">
-              <h3>App mobile (prototype)</h3>
-              <p>Application mobile simple pour l’apprentissage.</p>
-              <span>React Native (bases)</span>
-              <div class="project-links">
-                <a href="#" class="btn primary">Voir</a>
-                <a href="#" class="btn secondary">GitHub</a>
-              </div>
-            </div>
-          </article>-->
-      </section>
+        </div>
+
+      </div>
+    </article>
+
+
+    <!-- PROJET 3 : E-COMMERCE -->
+    <article class="project-card-stack back">
+      <div class="project-card-inner">
+
+        <div class="project-media">
+          <img
+            src="img/site-ecomerce.png"
+            alt="Site E-Commerce"
+            class="project-image"
+          >
+        </div>
+
+        <div class="project-content">
+          <h3>Site E-Commerce</h3>
+
+          <p>
+            Plateforme e-commerce dynamique avec gestion complète
+            du catalogue et base de données en temps réel.
+          </p>
+
+          <p>
+            Interface d'administration dédiée pour l'ajout,
+            la modification et la suppression de produits en direct.
+          </p>
+
+          <span>
+            React • Vite • Firebase • Tailwind CSS
+          </span>
+
+          <div class="project-links">
+            <a
+              href="https://boutique-jorma.vercel.app/"
+              target="_blank"
+              class="btn primary"
+            >
+              Voir
+            </a>
+
+            <a
+              href="https://github.com/Alou-creaty/boutique-en-ligne"
+              target="_blank"
+              class="btn secondary"
+            >
+              GitHub
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </article>
+
+  </section>
+</section>
       <section id="contact" class="contact section-reveal">
         <div class="contact-header">
           <h2 class="animate-child">Contactez-moi par mail</h2>
